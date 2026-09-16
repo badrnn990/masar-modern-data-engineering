@@ -2,11 +2,12 @@ name: Student course - publish and test
 on:
   workflow_dispatch:
   push:
+    branches: [develop]
     paths: ['.github/workflows/student-course.yml']
 permissions:
   contents: write
 concurrency:
-  group: masar-student-course
+  group: masar-student-course-develop
   cancel-in-progress: false
 jobs:
   source:
@@ -33,6 +34,8 @@ jobs:
         shell: bash
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: develop
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -55,15 +58,14 @@ jobs:
         run: |
           mkdir -p evidence/student-course
           python -u scripts/execute_student_course.py 2>&1 | tee evidence/student-course/notebook-execution.log
-      - name: Validate and publish actual notebook outputs
+      - name: Validate and publish actual notebook outputs and evidence
         run: |
           python scripts/check_repository.py --release
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add day01 day02 day03 day04 day05 docs/VERIFICATION.md docs/verification.json course.json
-          git commit -m 'test: record ten successful student notebook executions with complete native catalog coverage'
-          git push origin HEAD:main
-          git archive --format=zip --output=Masar_Learner_Course.zip HEAD
+          git config user.name 'Badr N'
+          git config user.email 'badrnn990@users.noreply.github.com'
+          git add day01 day02 day03 day04 day05 docs/VERIFICATION.md docs/verification.json course.json reports LAB*_NOTES.md BENCHMARKS.md DECISIONS.md GOVERNANCE.md README.md
+          git commit -m 'test: record student notebook executions and cumulative evidence'
+          git push origin HEAD:develop
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -71,12 +73,6 @@ jobs:
           path: evidence/student-course/
           retention-days: 7
           if-no-files-found: warn
-      - uses: actions/upload-artifact@v4
-        if: success()
-        with:
-          name: executed-learner-course
-          path: Masar_Learner_Course.zip
-          retention-days: 7
       - name: Stop the broker
         if: always()
         run: docker compose -f infrastructure/kafka/compose.yaml down
