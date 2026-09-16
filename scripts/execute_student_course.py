@@ -70,10 +70,15 @@ def run_course(attempt: int) -> dict:
     return result
 
 def publish_evidence() -> None:
-    source=EVIDENCE/'run_1'/'outputs'; mapping=['bronze.json','benchmark.json','day02_staging_latest.json','day02_silver.json','day03_transactions.json','day03_maintenance_latest.json','day04_stream_latest.json','day04_quality_latest.json','day05_recovery.json','day05_serving_latest.json']
+    outputs = EVIDENCE/'run_1'/'outputs'
+    workspaces = sorted(p for p in outputs.glob('day01_bronze_*') if p.is_dir())
+    if len(workspaces) != 1:
+        raise RuntimeError(f'Expected exactly one retained Bronze workspace, found {len(workspaces)}')
+    source = workspaces[0]
+    mapping=['bronze.json','benchmark.json','day02_staging_latest.json','day02_silver.json','day03_transactions.json','day03_maintenance_latest.json','day04_stream_latest.json','day04_quality_latest.json','day05_recovery.json','day05_serving_latest.json']
     for name in mapping:
         src=source/'reports'/name
-        if not src.is_file(): raise FileNotFoundError(f'Missing generated report: reports/{name}')
+        if not src.is_file(): raise FileNotFoundError(f'Missing generated report: {src.relative_to(EVIDENCE / "run_1")}')
         dst=ROOT/'reports'/name; dst.parent.mkdir(parents=True,exist_ok=True); shutil.copy2(src,dst)
     for folder,name in [('streaming','day04_stream_latest.json'),('quality','day04_quality_latest.json'),('recovery','day05_recovery.json'),('serving','day05_serving_latest.json')]:
         dst=ROOT/'reports'/folder/name; dst.parent.mkdir(parents=True,exist_ok=True); shutil.copy2(source/'reports'/name,dst)
