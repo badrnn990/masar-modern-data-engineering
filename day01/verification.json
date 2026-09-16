@@ -2,8 +2,8 @@
   "day": 1,
   "status": "PASSED",
   "independent_course_runs": 2,
-  "verified_at_utc": "2026-09-10T14:54:39.652686+00:00",
-  "workflow_url": "https://github.com/almiyead-rgb/masar-modern-data-engineering/actions/runs/34490330684",
+  "verified_at_utc": "2026-09-16T12:57:16.130721+00:00",
+  "workflow_url": "https://github.com/badrnn990/masar-modern-data-engineering/actions/runs/35097801713",
   "dataset_manifest_sha256": "20a7e45bed2980b9394c10e8532da3b9f40f614366bb2df26a88610253e768e3",
   "checks": {
     "day": 1,

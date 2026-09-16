@@ -1,0 +1,158 @@
+{
+  "approved_business_digest": "1321d375742d806a1f0fef82be9e2862af04f5d18f3a976792a6b1d9aa1b4383",
+  "approved_table": "mini_lakehouse/silver/validated_day04/28839f437a2d4629b0fc5babd11d9762",
+  "artifacts": {
+    "approved": {
+      "commits": [
+        {
+          "path": "mini_lakehouse/silver/validated_day04/28839f437a2d4629b0fc5babd11d9762/_delta_log/00000000000000000000.json",
+          "sha256": "1b2348933916fd5b01385a2b429375db21688c078fb009bd6582ac73c8530a1b"
+        }
+      ],
+      "data_files": [
+        {
+          "path": "mini_lakehouse/silver/validated_day04/28839f437a2d4629b0fc5babd11d9762/part-00000-fd52ce62-f373-467c-94c2-d9040cfb48cd-c000.snappy.parquet",
+          "sha256": "7e520c5d545aba7dcba5ea65fc3da4d80af86c878f6502854e5b6cc3c17918f5"
+        }
+      ]
+    },
+    "candidate": {
+      "commits": [
+        {
+          "path": "mini_lakehouse/staging/day04_quality/28839f437a2d4629b0fc5babd11d9762/_delta_log/00000000000000000000.json",
+          "sha256": "118774c7eb5499666fffc1403fd114dfc6ef02514f558b0786dcc24d9cf79ab7"
+        }
+      ],
+      "data_files": [
+        {
+          "path": "mini_lakehouse/staging/day04_quality/28839f437a2d4629b0fc5babd11d9762/part-00000-f614b090-b852-4a88-b43d-89c3009869e3-c000.snappy.parquet",
+          "sha256": "7e520c5d545aba7dcba5ea65fc3da4d80af86c878f6502854e5b6cc3c17918f5"
+        },
+        {
+          "path": "mini_lakehouse/staging/day04_quality/28839f437a2d4629b0fc5babd11d9762/part-00001-89ce395e-a21e-4f84-aa70-bd0048c0f87d-c000.snappy.parquet",
+          "sha256": "77b2179538f5c565043e530c885eb7874afd45faa527e9c618440e5ab9f1c6a5"
+        }
+      ]
+    },
+    "quarantine": {
+      "commits": [
+        {
+          "path": "mini_lakehouse/quarantine/day04/28839f437a2d4629b0fc5babd11d9762/_delta_log/00000000000000000000.json",
+          "sha256": "a22e55e1783ce85df6b61ea14058ba796499f292fa27d3c8f977aff6ac414212"
+        }
+      ],
+      "data_files": [
+        {
+          "path": "mini_lakehouse/quarantine/day04/28839f437a2d4629b0fc5babd11d9762/part-00000-ba60f672-376a-460c-aac6-f7de823c8c59-c000.snappy.parquet",
+          "sha256": "d200555a3788bd76d02fa5fb19ea0204782fdb68e7ad4b1861cb73ddcba0ba43"
+        },
+        {
+          "path": "mini_lakehouse/quarantine/day04/28839f437a2d4629b0fc5babd11d9762/part-00001-6d279afb-2377-4793-aa77-22bf8ecfb491-c000.snappy.parquet",
+          "sha256": "c186417c67479c378ebc9655ebe1f2b9a7eb5f34ab473b5ea98cbd15a8ccb353"
+        }
+      ]
+    }
+  },
+  "candidate_table": "mini_lakehouse/staging/day04_quality/28839f437a2d4629b0fc5babd11d9762",
+  "checks": {
+    "approved_readback_same_business_contents": true,
+    "data_docs_exist_for_all_three_cases": true,
+    "failed_candidate_not_promoted": true,
+    "mixed_candidate_fails_gx": true,
+    "native_mixed_counts": true,
+    "native_reasons_match_reference": true,
+    "quarantine_delta_readback": true,
+    "source_silver_untouched": true,
+    "trusted_and_rechecked_pass_gx": true
+  },
+  "dataset_manifest_sha256": "20a7e45bed2980b9394c10e8532da3b9f40f614366bb2df26a88610253e768e3",
+  "distribution": {
+    "baseline_counts": {
+      "Dammam": 25,
+      "Jeddah": 25,
+      "Riyadh": 25
+    },
+    "current_counts": {
+      "Dammam": 25,
+      "Jeddah": 25,
+      "Riyadh": 25
+    },
+    "meaning": "Fixture-relative diagnostic; not statistical significance or real population drift.",
+    "metric": "categorical_total_variation_distance",
+    "status": "PASS",
+    "threshold": 0.1,
+    "value": 0.0
+  },
+  "engine_executed": true,
+  "gx_executed": true,
+  "gx_results": [
+    {
+      "checkpoint_result_file": "checkpoint_result.json",
+      "data_docs": [
+        "gx/uncommitted/data_docs/local_site/index.html"
+      ],
+      "data_docs_sha256": [
+        "06b4c6bd72d861adefbe6a29591a417d367d08b47422b236f008ba1c61921dd2"
+      ],
+      "gx_executed": true,
+      "gx_version": "1.7.0",
+      "phase": "trusted",
+      "rows": 75,
+      "scope": "GX_NATIVE_CHECKPOINT",
+      "success": true
+    },
+    {
+      "checkpoint_result_file": "checkpoint_result.json",
+      "data_docs": [
+        "gx/uncommitted/data_docs/local_site/index.html"
+      ],
+      "data_docs_sha256": [
+        "ba08d845daf8a7aacd2cfd62086231791fa879792af3af05a95a6b480ff2a940"
+      ],
+      "gx_executed": true,
+      "gx_version": "1.7.0",
+      "phase": "mixed",
+      "rows": 82,
+      "scope": "GX_NATIVE_CHECKPOINT",
+      "success": false
+    },
+    {
+      "checkpoint_result_file": "checkpoint_result.json",
+      "data_docs": [
+        "gx/uncommitted/data_docs/local_site/index.html"
+      ],
+      "data_docs_sha256": [
+        "365f2d6f5f4feef2c74725acf174fb1e67362fadf5940c0677ea3ffd1de8d355"
+      ],
+      "gx_executed": true,
+      "gx_version": "1.7.0",
+      "phase": "rechecked",
+      "rows": 75,
+      "scope": "GX_NATIVE_CHECKPOINT",
+      "success": true
+    }
+  ],
+  "not_proven": [
+    "production-scale quality performance",
+    "permissions enforcement",
+    "legal compliance certification"
+  ],
+  "quarantine_table": "mini_lakehouse/quarantine/day04/28839f437a2d4629b0fc5babd11d9762",
+  "reports": "reports/day04_quality/28839f437a2d4629b0fc5babd11d9762",
+  "run_id": "28839f437a2d4629b0fc5babd11d9762",
+  "scenario_freshness": {
+    "as_of": "2026-06-04T03:04:00Z",
+    "delivery": {
+      "age_seconds": 240,
+      "limit_seconds": 300,
+      "status": "PASS"
+    },
+    "source_event": {
+      "age_seconds": 33540,
+      "limit_seconds": 43200,
+      "status": "PASS"
+    }
+  },
+  "scope": "DAY04_NATIVE_QUALITY",
+  "spark_version": "3.5.8"
+}
