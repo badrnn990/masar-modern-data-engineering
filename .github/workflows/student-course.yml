@@ -58,12 +58,12 @@ jobs:
         run: |
           mkdir -p evidence/student-course
           python -u scripts/execute_student_course.py 2>&1 | tee evidence/student-course/notebook-execution.log
-      - name: Validate and publish actual notebook outputs and evidence
+      - name: Validate and publish actual notebook outputs
         run: |
           python scripts/check_repository.py --release
           git config user.name 'Badr N'
           git config user.email 'badrnn990@users.noreply.github.com'
-          git add day01 day02 day03 day04 day05 docs/VERIFICATION.md docs/verification.json course.json reports LAB*_NOTES.md BENCHMARKS.md DECISIONS.md GOVERNANCE.md README.md
+          git add day01 day02 day03 day04 day05 docs/VERIFICATION.md docs/verification.json course.json
           git commit -m 'test: record student notebook executions and cumulative evidence'
           git push origin HEAD:develop
       - uses: actions/upload-artifact@v4
